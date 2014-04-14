@@ -7,6 +7,8 @@
 % LATEX DEFINITIONS 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{textcomp}
+\usepackage{mathabx}
 \usepackage{enumerate}
 \usepackage{hyperref} 
 \usepackage{array} 
@@ -16,6 +18,8 @@
 \usepackage{todonotes} 
 \usepackage{rotating} 
 \usepackage{color} 
+\usepackage{tabularx} 
+\usepackage{amssymb}
  
 \newcommand*\rot{\rotatebox{90}} 
  
@@ -148,11 +152,12 @@ clusters with different types and size. They are interconnected with up to a 10G
 In total 481 compute servers with 1126 CPUs and 4496 Cores are
 offered. In addition it offers also 448 GPU cores. The total RAM is
 about 21.5TB. Secondary storage is about 1PB. A more detailed
-description of the resources is provided in \cite{vonLaszewski-bookchapter2014}
+description of the resources is provided in
+\cite{vonLaszewski-bigdata-bookchapter2014}
 
 FutureGrid offers a very rich environment to its users. We distinguish the following categories: Cloud PaaS, IaaS, GridaaS, HPCaaS, TestbedaaS.
 
-FutureGrid provides an advanced framework to manage user and project affiliation and propagates this information to a variety of subsystems constituting the FG service infrastructure. This includes operational services (not explicitly mentioned in Figure \label{F:services}) to deal with authentication, authorization and accounting. In particular we have developed a unique metric framework that allows us to create usage reports from our entire Infrastructure as a Service frameworks. Repeatable experiments can be created with a number of tools including Pegasus, Precip and Cloudmesh.Provisioning of services and images can be conducted by RAIN \cite{imagemanagement,fg-1295}. Infrastructure monitoring is enabled via Nagios \cite{nagios}, Ganglia \cite{ganglia}, and Inca \cite{inca} and our own cloud metric system \cite{las08federated-cloud}.
+FutureGrid provides an advanced framework to manage user and project affiliation and propagates this information to a variety of subsystems constituting the FG service infrastructure. This includes operational services to deal with authentication, authorization and accounting. In particular we have developed a unique metric framework that allows us to create usage reports from our entire Infrastructure as a Service frameworks. Repeatable experiments can be created with a number of tools including Pegasus, Precip and Cloudmesh.Provisioning of services and images can be conducted by RAIN \cite{imagemanagement,fg-1295}. Infrastructure monitoring is enabled via Nagios \cite{nagios}, Ganglia \cite{ganglia}, and Inca \cite{inca} and our own cloud metric system \cite{las08federated-cloud}.
 Within the traditional high performance computing services FG offers a traditional MPI/batch queuing system and a virtual large memory system that are beneficial for big data calculations.
 
 
@@ -442,7 +447,90 @@ In our system of FutureGrid, summary of resource allocation data is important to
 
 The process of measuring resource allocation begins with collecting usage data within the infrastructure. Each IaaS cloud resource provider typically has an internal system to record resource allocation per users or groups. Virtual Instance is a good measure of resource utilization in cloud environments since it reserves and releases compute resource when it deploys. To measure the amount of resources allocated and consumed, CloudMesh Metrics places the Metric Collector to IaaS platforms. For example, the metric collector periodically connects to Openstack database to obtain information of VM deployment. Once the collecting process has been completed, unifying different data types of the measured data is critical to provide a summary of resource allocation across several IaaS platforms. The filter of the metric collector converts the data types into a single data object consisting of attribute-value pairs in Metrics database.To achieve this goal, NoSQL database is recommended in the metrics system.  Table 1 shows  details of measuring resource allocation on FutureGrid.
 
-Table 1. Measurement of IaaS on FutureGrid
+Note:
+Table \ref{T:compare-iaas}
+
+    Nimbus create\_event, remove\_event tables 
+    OS: nova, keystone  databases 
+
+    Euca: cc.log, Compute Log 
+
+
+%\newcommand{\YES}{\checkmark}
+%\newcommand{\NO}{\textopenbullet}
+\newcommand{\YES}{\ding{51}}
+
+\newcommand{\NO}{\ding{55}}
+
+
+\begin{table}[h!]
+  \caption{Measurement of IaaS on FutureGrid}\label{T:compare-iaas}
+  ~\\
+  \begin{small}
+  \begin{tabularx}{\columnwidth}{|l|X|X|X|}
+  \hline
+                 & {\bf Nimbus} & {\bf OpenStack} & {\bf Eucalyptus} \\
+    \hline
+    \hline
+    \multicolumn{4}{|l|}{\bf Documentation of the Data Sources} \\
+    \hline
+       & \NO & \YES & \YES \\
+    \hline
+    \hline
+    \multicolumn{4}{|l|}{\bf Data Sources} \\
+    \hline
+         & sqlite3 & MySQL & Log Files \\
+    \hline
+    \hline
+    \multicolumn{4}{|l|}{\bf Metrics} \\
+    \hline
+    ~~vCPU core & \YES & \YES & \YES \\
+    ~~memory & \YES & \YES & \YES \\
+    ~~disk & \YES & \YES & \YES \\
+    ~~instance type   & \NO? & \YES & \NO? \\
+    ~~host & \NO? & \YES & \NO? \\
+    \hline
+    \hline
+    \multicolumn{4}{|l|}{\bf Account Management Features} \\
+    \hline
+    ~~Users     & \YES & \YES & \YES \\
+    ~~Projects & \NO & \YES & \YES \\
+    \hline
+    \hline
+    \multicolumn{4}{|l|}{\bf Cluster} \\
+    \hline
+    ~~Alamo  & \YES & \YES & \YES \\
+    ~~Foxtrot & \YES & \NO & \NO \\
+    ~~Hotel    & \YES & \YES & \NO \\
+    ~~India     & \NO  & \YES & \YES? \\
+    ~~Sierra    & \NO & \YES & \YES? \\
+    ~~Lima     & ?       &  ?      &  ?       \\   
+    \hline
+%    Region& \shortstack[l]{TACC$^1$, \\UF$^2$, \\UChicago$^3$, \\SDSC$^4$} & \shortstack[l]{TACC, \\IU$^5$, \\SDSC } & \shortstack[l]{IU, \\SDSC$^6$} \\
+%    \hline
+  \end{tabularx}\\
+%  $^1$ Texas Advanced Computing Center \\
+%  $^2$ University of Florida \\
+%  $^3$ University of Chicago \\
+%  $^4$ San Diego Supercomputing Center\\
+%  $^5$ Indiana University\\
+%  $^6$ in early 2014\\
+\end{small}
+\end{table}
+
+
+%\clearpage 
+ 
+%\bibliographystyle{IEEEtranS}
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{abbrv} 
+\bibliography{% 
+bib/vonLaszewski-jabref.bib,%
+bib/cyberaide-cloud} 
+ 
+\end{document} 
+
+
 
 \begin{table*}
 \caption{Table}
@@ -480,15 +568,4 @@ India &
 Indiana University, San Diego Supercomputing Center* (in early 2014) \\
 \hline
 \end{tabular}
- \end{table*}
-
-%\clearpage 
- 
-%\bibliographystyle{IEEEtranS}
-\bibliographystyle{IEEEtran}
-%\bibliographystyle{abbrv} 
-\bibliography{% 
-bib/vonLaszewski-jabref.bib,%
-bib/cyberaide-cloud} 
- 
-\end{document} 
+\end{table*}
