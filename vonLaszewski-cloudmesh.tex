@@ -183,9 +183,11 @@ Account based federation
 
 Administrative federation
 
+\url{http://www.egi.eu/infrastructure/cloud/}
+
 
 \cite{kurze2011cloudfederation}
-\cite{phantom12}
+
 
 \subsection{Definitions}
 
@@ -233,9 +235,30 @@ using the following definitions throughout the paper.
 \section{Related Work}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Phantom 
+\begin{description}
 
-Rightscale - multi-cloud
+\item[Phantom] \cite{phantom12,www-phantom} is a tools that monitors the health of resources and
+  automatically provisions and configures new ones based on demand. IT
+  is designed to automatically (a) provisioning new
+  resources to counteract failures or (b) react to increasing demand
+  reducing  constant attention and repetitive task that can be
+  automated. 
+
+\item[RightScale] \cite{Rightscale} enables users to manage multi cloud infrastructure
+  by migrating workloads between private clouds and public
+  clouds. RightScale is by now interfacing with a wide variety of
+  clouds including Amazon Web Services (AWS), Rackspace Cloud,
+  Windows Azure, and Google Compute Engine. In addition it also offers
+  a cloud cost estimator allowing customers to assess expenses 
+  they are charged by comparing their workload on various cloud
+  providers.
+
+\item[StarCluster] \cite{www-starcluster} ``StarCluster is an open source cluster-computing toolkit for Amazon's Elastic Compute Cloud (EC2). StarCluster has been designed to simplify the process of building, configuring, and managing clusters of virtual machines on Amazon's EC2 cloud.''
+
+\end{description}
+
+
+
 
 spot pricing, mit 
 
@@ -252,6 +275,14 @@ intercloud
 hybrid cloud federation
 
 regions
+
+
+Icehouse
+Federation is the first new feature listed on Keystone's release notes for Icehouse:
+
+  \url{https://wiki.openstack.org/wiki/ReleaseNotes/Icehouse#OpenStack_Identity_.28Keystone.29}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Requirements}
