@@ -476,7 +476,7 @@ In our system of FutureGrid, summary of resource allocation data is important to
 
 \subsection{Metric Collector}
 
-The process of measuring resource allocation begins with collecting usage data within the infrastructure. Each IaaS cloud resource provider typically has an internal system to record resource allocation per users or groups. Virtual Instance is a good measure of resource utilization in cloud environments since it reserves and releases compute resource when it deploys. To measure the amount of resources allocated and consumed, CloudMesh Metrics places the Metric Collector to IaaS platforms. For example, the metric collector periodically connects to Openstack database to obtain information of VM deployment. Once the collecting process has been completed, unifying different data types of the measured data is critical to provide a summary of resource allocation across several IaaS platforms. The filter of the metric collector converts the data types into a single data object consisting of attribute-value pairs in Metrics database.To achieve this goal, NoSQL database is recommended in the metrics system.  Table 1 shows  details of measuring resource allocation on FutureGrid.
+The process of measuring resource allocation begins with collecting usage data within the infrastructure. Each IaaS cloud resource provider typically has an internal system to record resource allocation per users or groups. Virtual Instance is a good measure of resource utilization in cloud environments since it reserves and releases compute resource when it deploys. To measure the amount of resources allocated and consumed, CloudMesh Metrics places the Metric Collector to IaaS platforms. For example, the metric collector periodically connects to Openstack database to obtain information of VM deployment. Once the collecting process has been completed, unifying different data types of the measured data is critical to provide a summary of resource allocation across several IaaS platforms. The filter of the metric collector converts the data types into a single data object consisting of attribute-value pairs in Metrics database.To achieve this goal, NoSQL database is recommended in the metrics system.  Table ~\ref{T:compare-iaas} shows  details of measuring resource allocation on FutureGrid.
 
 Note:
 Table \ref{T:compare-iaas}
@@ -581,7 +581,8 @@ The purpose of the Metric Analyzer in CloudMesh is to provide ways for processin
 %\bibliographystyle{abbrv} 
 \bibliography{% 
 bib/vonLaszewski-jabref.bib,%
-bib/cyberaide-cloud} 
+bib/cyberaide-cloud,
+bib/cyberaide-metric} 
  
 \end{document} 
 
