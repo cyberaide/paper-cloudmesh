@@ -98,19 +98,20 @@ Others to be added ...  \\
   users of FutureGrid to utilize such a service with their
   credentials. Furthermore, we are discussing implications and
   solutions for a unified metrics system assisting the users to find
-  and utilize resources appropriate for their applications. Lastly we 
+  and utilize resources appropriate for their applications. Lastly we
   discuss how to move such a multicloud environment forward by
   integrating clouds managed by the community or are offered as public
   clouds. This includes the introduction of a mutual trust agreements
-  on user and project baseis. We have developed a number of
-  components that support the creation of such a multicloud 
-  environment. This system is known as cloudmesh and has been used in
-  practice to achieve virtual machine management in multiple clouds. An important
+  on user and project baseis. We have developed a number of components
+  that support the creation of such a multicloud environment. This
+  system is known as cloudmesh and has been used in practice to
+  achieve virtual machine management in multiple clouds. An important
   distinguishing factor of cloudmesh is that it also allows the use of
-  bare metal provisioning for supporting service providers  and authorized users, offering services
-  beyond those available by typical clouds.
+  bare metal provisioning for supporting service providers and
+  authorized users, offering services beyond those available by
+  typical clouds.
 
-The paper will be 8 pages long in 
+  The paper will be 8 pages long 
  
 \end{abstract} 
  
@@ -468,18 +469,18 @@ Despite the fact that Cloudmesh was originally a quite sophisticated command she
 
 \section{Cloud Metrics}
 
-Based on lessons learned from FutureGrid, the summary of resource
-allocation data is important to provide the visibility of resource
-utilization in a holistic fashion. This is especially of interest as
-more than 300 projects and 3000 users are supported and resource cloud
-become over provisioned or are not properly used by the users. Among
-the many services that FutureGrid offers we have especially focussed
-on those that are highly used including OpenStack, Eucalyptus, Nimbus,
-and batch systems supported by Moab and Torque.  These services are
+Based on lessons learned from FutureGrid, knowledge of the resource
+allocation an utilization is important to provide users and
+administrators with a holistic infrastructure picture in order to guide
+utilization according to set goals.
+
+This is especially of interest as FutureGrid supports more than 380
+projects and 2300 users are supported and resource cloud become over
+provisioned or are not properly used by the users. Among the many
+services that FutureGrid offers we have especially focussed on those
+that are highly used including OpenStack, Eucalyptus, Nimbus, and
+batch systems supported by Moab and Torque.  These services are
 partially installed on several distributed clusters.
-
-
-\subsection{CloudMesh Metrics: Measuring Resource Utilization}
 
 For this paper we will restrict our discussion on the IaaS based
 monitoring components. As the systems did not provide any sufficient
@@ -491,18 +492,70 @@ Nimbus. Other HPC related activities in regards to monitoring and
 metrics are discussed in \cite{ubmod}
 and \cite{las12xdmod-kernel,las12xdmod-planing,las13xdmod}.
 
-\begin{figure}[htb]
-  \centering
-    \includegraphics[width=1.0\columnwidth]{images/cloudmesh-metrics.pdf}
-  \caption{Design of CloudMesh Metrics Architecture}
-  \label{F:metric-arch}
-\end{figure}
+
+The two main components of CloudMesh Metrics (a) measure the resource
+allocation across several IaaS platforms and (b) provide statistics
+and usage data through various user interface while at the same time
+servicing distinct user communities. This includes the user that is
+interested in monitoring his own utilization, the project that may
+constitute multiple users, and the service provider that is interested
+in offering optimized services to the users and projects.
+
+\subsection{User- and Project-based Metrics Services}
+
+In order for users to use a variety of clouds it is important for them
+to monitor and compare their resource utilization on the various
+clouds. It is important to note that this may not only mean for
+individual users, but also for users that are organized as part of a
+joint project. Users can naturally be in multiple projects, or have
+access to multiple clouds. Thus the requirement exists to present the
+data to the user based on individual user utilization, group,
+utilization, or even experiment utilization, where a particular
+experiment is analyzed instead of just looking at the total
+utilization.
+
+\subsection{Resource Provider-based Metrics Services}
+
+In addition to providing a great deal of information about each user,
+a holistic metric system that enables an overview of the various
+resource metrics is important for resource providers. It is clear that
+summary information may be customized based on the requirements by
+individual users, project leads, resource providers, site managers,
+and funding agencies. This information is typically restricted to the
+actual {\em resources} for which administrative access exists in order
+to provide a holistic set of metrics.
+To enable this holistic view we will first start by basing our inotial
+development efforts on the extension of the CLoud Metrics services
+that have been developed by FutureGrid for a multi-cloud environment
+for resource providers within FutureGrid.
+The extensions will include that ability to alos integrate public and other cloud
+information offered as part of the multi-cloud infrastructure
+accessible to the users today.
+
+\subsection{CloudMesh Metric Architecture}
+
+The cloudmesh metric architecture is based on the integration of a
+authorized REST service, that utilizes a simple abstraction layer to interface
+with the various cloud services to obtain needed information gathered
+under authorization constraints. The data will be hosted in a NOSQL
+database to allow mining of the data in map/reduce frameworks. Data
+can be ingested either directly through the database via the API, or
+through REST calls that are mitigated through message queues with
+AMPQ. Adapters can be written to integrate new information providers 
 
 
-The two main components of CloudMesh Metrics in Figure~\ref{F:??} measure the
-resource allocation across several IaaS platforms and provide
-statistics and usage data through various user interface. Metric
-Collector starts with OpenStack, Eucalyptus, and Nimbus but not
+compare to: \cite{smith13info}
+
+\subsection{CloudMesh Metrics: Measuring Resource Utilization}
+
+%\begin{figure}[htb]
+%  \centering
+%    \includegraphics[width=1.0\columnwidth]{images/cloudmesh-metrics.pdf}
+%  \caption{Design of CloudMesh Metrics Architecture}
+%  \label{F:metric-arch}
+%\end{figure}
+ 
+The current Cloudmesh MetricCollector offers OpenStack, Eucalyptus, and Nimbus but not
 limited to these platforms. The pre-defined filters help collect usage
 data from any cloud platforms and data resource (e.g. log files,
 mysql, or sqlite). Representing measured data is one of the key roles
@@ -540,8 +593,8 @@ provide a summary of resource allocation across several IaaS
 platforms. The filter of the metric collector converts the data types
 into a single data object consisting of attribute-value pairs in
 Metrics database.To achieve this goal, NoSQL database is recommended
-in the metrics system.  Table~\ref{T:??} shows details of measuring
-resource allocation on FutureGrid.
+in the metrics system.  Table~\ref{T:compare-iaas} shows details of
+measuring resource allocation on FutureGrid.
 
 \subsection{Metric Analyzer}
 
@@ -568,13 +621,16 @@ are included in the documentation generated by Report
 Generator. Referencing data can be simply done via downloading a csv
 or json format file in Data Export Tool.
 
+
+
+
 Note:
 Table \ref{T:compare-iaas}
 
-    Nimbus create\_event, remove\_event tables 
-    OS: nova, keystone  databases 
+    Nimbus: create\_event, remove\_event tables 
+    OpenStack: nova, keystone  databases 
 
-    Euca: cc.log, Compute Log 
+    Eucalyptus: cc.log, Compute Log 
 
 
 %\newcommand{\YES}{\checkmark}
@@ -639,6 +695,32 @@ Table \ref{T:compare-iaas}
 \end{small}
 \end{table}
 
+\subsection{Metric Analyzer}
+
+The purpose of the Metric Analyzer in CloudMesh is to provide ways for processing statistics and interacting with users to get the proper interpretation of data. Visualization of measured data is offered to ease understanding of the data using chart tools. ~\cite{kosslyn1989understanding,pinker1990theory,friel2001making}. Metric Analyzer suggests three components to accomplish these goals. CLI terminal provides an interactive shell so that users can specify details of getting statistics e.g. region, cluster, user, project names, etc. With the python cmd module, it is easy to build custom commands that directly retrieve the usage data. Available metrics and commands are listed with the built-in help commands that are generated by automatic docstring translation. If a formal representation of data is preferred with graphical chart tools, Report Generator in Metric Analyzer can be used to provide web-based reports with different type of charts, e.g. histogram, bar chart, pie chart or line chart. Report Generator publishes documentation in HTML and PDF formats using python Sphinx system~\cite{brandl2009sphinx}, external chart tools i.e. highcharts ~\cite{highsoft2012highcharts} and Google Chart API. The metrics with different chart types in Table~\ref{T:iaas-with-graph} are included in the documentation generated by Report Generator. Referencing data can be simply done via downloading a csv or json format file in Data Export Tool.
+
+\begin{table}[h!]
+  \caption{Metric visualization with graphs}\label{T:iaas-with-graph}
+  ~\\
+  \begin{center}
+  \begin{small}
+  \begin{tabular}{|p{0.2\columnwidth}|p{0.7\columnwidth}|}
+  \hline
+  {\bf Example} & {\bf Description} \\
+    \hline
+    \includegraphics[width=0.2\columnwidth]{images/metric-line-chart.pdf} &  vCPU, Memories, Disks, and user count \\
+    \hline
+    \includegraphics[width=0.2\columnwidth]{images/metric-histogram-chart.pdf} & Instance types \\
+    \hline
+    \includegraphics[width=0.2\columnwidth]{images/metric-pie-chart.pdf} & Regions, hosts \\
+    \hline
+    \includegraphics[width=0.2\columnwidth]{images/metric-table-chart.pdf} & Project leaders \\
+    \hline
+  \end{tabular}\\
+\end{small}
+\end{center}
+\end{table}
+
 
 %\clearpage 
  
@@ -647,7 +729,8 @@ Table \ref{T:compare-iaas}
 %\bibliographystyle{abbrv} 
 \bibliography{% 
 bib/vonLaszewski-jabref.bib,%
-bib/cyberaide-cloud} 
+bib/cyberaide-cloud,%
+bib/cyberaide-metric} 
  
 \end{document} 
 
