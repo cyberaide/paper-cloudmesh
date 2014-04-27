@@ -1,11 +1,6 @@
-\documentclass{tex/sig-alternate} 
 
-\newcommand{\TITLE}{Accessing Multiple  Clouds with Cloudmesh}
-\newcommand{\AUTHOR}{Gregor von Laszewski} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LATEX DEFINITIONS 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{tex/sig-alternate-2013}
 
 \usepackage[T1]{fontenc}
 \usepackage{adjustbox}
@@ -13,128 +8,250 @@
 \usepackage{color}
 \usepackage{textcomp}
 \usepackage{mathabx}
-\usepackage{enumerate}
+%\usepackage{enumerate}
 \usepackage{hyperref} 
 \usepackage{array} 
 \usepackage{graphicx} 
 \usepackage{booktabs} 
 \usepackage{pifont} 
-\usepackage{todonotes} 
 \usepackage{rotating} 
 \usepackage{color} 
 \usepackage{tabularx} 
 \usepackage{amssymb}
+\usepackage{enumitem}
  
 \newcommand*\rot{\rotatebox{90}} 
- 
-\newcommand{\FILE}[1]{\todo[color=green!40]{#1}} 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% HYPERSETUP 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\hypersetup{ 
-    bookmarks=true,         % show bookmarks bar 
-    unicode=false,          % non-Latin characters in AcrobatΓÇÖs bookmarks 
-    pdftoolbar=true,        % show Acrobat's toolbar 
-    pdfmenubar=true,        % show Acrobat's menu 
-    pdffitwindow=false,     % window fit to page when opened 
-    pdfstartview={FitH},    % fits the width of the page to the window 
-    pdftitle={\TITLE},    % title 
-    pdfauthor={\AUTHOR},     % author 
-    pdfsubject={Subject},   % subject of the document 
-    pdfcreator={\AUTHOR},   % creator of the document 
-    pdfproducer={\AUTHOR}, % producer of the document 
-    pdfkeywords={hindex} {cloud}{FutureGrid}, % list of keywords 
-    pdfnewwindow=true,      % links in new window 
-    colorlinks=false,       % false: boxed links; true: colored links 
-    linkcolor=red,          % color of internal links (change box color with linkbordercolor) 
-    citecolor=green,        % color of links to bibliography 
-    filecolor=magenta,      % color of file links 
-    urlcolor=cyan           % color of external links 
-} 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% HYPHENATION
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcommand{\todo}[1]{{\color{red}{#1}}}
+\newfont{\mycrnotice}{ptmr8t at 7pt}
+\newfont{\myconfname}{ptmri8t at 7pt}
+\let\crnotice\mycrnotice%
+\let\confname\myconfname%
 
-\hyphenation{cloud-mesh}
+\permission{Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org.}
+\conferenceinfo{BigSystem 2014,}{June 23, 2014, Vancouver, BC, Canada.}
+\copyrightetc{Copyright 2014 ACM \the\acmcopyr}
+\crdata{978-1-4503-2909-5/14/06\ ...\$15.00.\\
+http://dx.doi.org/10.1145/2609441.2609638}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\clubpenalty=10000 
+\widowpenalty = 10000
 
-\begin{document} 
-% 
-% --- Author Metadata here --- 
-\conferenceinfo{TBD}{} 
-\CopyrightYear{2014}  
-\crdata{X-XXXXX-XX-X/XX/XX}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE. 
-% --- End of Author Metadata --- 
- 
-\title{\TITLE} 
-%\subtitle{[Extended Abstract] 
-%\titlenote{A full version of this paper is available as 
-%\texttt{www.acm.org/eaddress.htm}}} 
- 
-\numberofauthors{1}  
-\author{ 
-\alignauthor 
-Gregor von Laszewski,\titlenote{Corresponding Author.} 
-Fugang Wang, 
-%Hyungro Lee,
-Geoffrey C. Fox, \\
+\begin{document}
+
+\title{Accessing Multiple  Clouds with Cloudmesh} 
+\numberofauthors{5} 
+\author{
+% 1st. author
+\alignauthor
+Gregor von Laszewski\titlenote{Corresponding author.}\\
        \affaddr{School of Informatics and Computing, Indiana University}\\
        \affaddr{919 E. 10th Street}\\
        \affaddr{Bloomington IN 47408, U.S.A.}\\ 
        \email{laszewski@gmail.com} 
-} 
-\date{13 March 2014} 
- 
-\toappear{} 
-\maketitle 
-\begin{abstract} 
+% 2nd. author
+\alignauthor
+Fugang Wang \\
+       \affaddr{School of Informatics and Computing, Indiana University}\\
+       \affaddr{919 E. 10th Street}\\
+       \affaddr{Bloomington IN 47408, U.S.A.}\\ 
+% 3rd. author
+\alignauthor Hyungro Lee\\
+       \affaddr{School of Informatics and Computing, Indiana University}\\
+       \affaddr{919 E. 10th Street}\\
+       \affaddr{Bloomington IN 47408, U.S.A.}\\ 
+\and  % use '\and' if you need 'another row' of author names
+% 4th. author
+\alignauthor Heng Chen\\
+       \affaddr{School of Informatics and Computing, Indiana University}\\
+       \affaddr{919 E. 10th Street}\\
+       \affaddr{Bloomington IN 47408, U.S.A.}\\ 
+% 5th. author
+\alignauthor Geoffrey C. Fox\\
+       \affaddr{School of Informatics and Computing, Indiana University}\\
+       \affaddr{919 E. 10th Street}\\
+       \affaddr{Bloomington IN 47408, U.S.A.}\\ 
+}
 
-  This paper analyses different aspects of managing multiple clouds
-  clouds. We present the design of a toolkit design that can
-  practically used by users and administrators to manage multicloud
-  environments.  It can either be run by individual users or offered
-  as a service to a shared user community. We have practically,
+\date{27 April 2014}
+
+\maketitle
+\begin{abstract}
+\todo{READ}
+  We present the design of a toolkit that can be used by users and
+  administrators to manage virtual machines on multi-cloud
+  environments.  It can be run by individual users or offered as a
+  service to a shared user community. We have practically,
   demonstrated its use as part of a FutureGrid service allowing users
-  users of FutureGrid to utilize such a service with their
-  credentials. Furthermore, we are discussing implications and
-  solutions for a unified metrics system assisting the users to find
-  and utilize resources appropriate for their applications. Lastly we
-  discuss how to move such a multicloud environment forward by
-  integrating clouds managed by the community or are offered as public
-  clouds. This includes the introduction of a mutual trust agreements
-  on user and project baseis. We have developed a number of components
-  that support the creation of such a multicloud environment. This
-  system is known as Cloudmesh and has been used in practice to
-  achieve virtual machine management in multiple clouds. An important
-  distinguishing factor of Cloudmesh is that it also allows the use of
-  bare metal provisioning for supporting service providers and
-  authorized users, offering services beyond those available by
-  typical clouds.
+  of FutureGrid to utilize such a service. Furthermore, we are
+  discussing implications and solutions for a unified metrics system
+  assisting the users to find and utilize resources appropriate for
+  their applications. Lastly we discuss how to move such a multi-cloud
+  environment forward by integrating clouds managed by the community
+  or are offered as public clouds. This includes the introduction of a
+  mutual trust agreements on user and project basis. We have developed
+  a number of components that support the creation of such a
+  multi-cloud environment. This system is known as Cloudmesh and has
+  been used in practice to achieve virtual machine management in
+  multiple clouds. An important distinguishing factor of Cloudmesh is
+  that it also allows the use of bare metal provisioning for
+  supporting service providers and authorized users, offering services
+  beyond those available by typical clouds.
+\end{abstract}
 
-  The paper will be 8 pages long 
- 
-\end{abstract} 
- 
-% A category with the (minimum) three required fields 
-\category{H.4}{Information Systems Applications}{Miscellaneous} 
-%A category including the fourth, optional field follows... 
-\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures] 
- 
-\terms{Theory} 
- 
-\keywords{Cloud}
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% SECTIONS 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% A category with the (minimum) three required fields
+\category{C.2.4}{Distributed Systems}{Cloud Computing}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\terms{Computer-Communication Networks}
+
+\keywords{Cloud, multi-cloud, federated clouds, FutureGrid, cloudmesh}
+
 \section{Introduction}
+\todo{READ}
+Cloud computing has become an important factor for managing
+infrastructure by research organizations and industry. Users and
+organizations are faced with a variety of solutions that may support
+their needs. Such offerings include a variety of Infrastructure as a
+Service (IaaS) frameworks. The choice between them provides a
+significant risk of investment and needs to be conducted
+carefully. The community has the choice to either use public clouds or
+set up their own private clouds. Public clouds are 
+offered by large providers such as Amazon, Microsoft, Google,
+Rackspace, HP, and others. Private clouds are set up by the internal
+Information Technology (IT) departments and made available as part of
+the general IT infrastructure. Two aspects result from this
+availability that need to be considered. First, which of the many
+Infrastructures should be chosen? Second, can the multitude of IaaS
+service offerings be leveraged and instead of choosing one a service can
+be offered that utilizes multiple of them. Furthermore, we have to
+consider that the IaaS frameworks to deploy provate clouds are
+evolving and that extensions may be needed that are not yet offered by
+the frameworks to adequately address the requirements posed by
+advanced IT service infrastructures of research organizations.
+
+In this paper we will present the design and implementation of a
+toolkit that addresses some of the points raised here.  The paper is
+structured as follows. First we discuss the important terminology used
+in this paper (Section \ref{S:terminology}). Next we analyse the
+requirements in more detail (Section \ref{S:requirements}) and
+summarize some related work (Section \ref{S:related}). The
+requirements motivate our design (Section \ref{S:design}) and
+implementation (Section \ref{S:implementation}). We focus on two
+aspect of the cloudmesh features, namely dynamic provisioning/ rain,
+as well as Lastly we present our conclusion (Section
+\ref{S:conclusion})
+
+\subsection{Terminology} \label{S:terminology}
+
+\todo{READ}
+We will be using the following definitions throughout the paper:
+
+\begin{description}[leftmargin=*,itemsep=0pt,topsep=0pt]
+
+\item[Public cloud:]  a service provider makes resources available to
+  usres over the public Internet. This includes compute, storage, and
+  applications. FutureGrid offers to its users a public cloud. 
+
+\item[Private cloud:] access to services may be having additional
+  restrictions. Restrictions could include a limited set of authorized
+  users to the services offered or  possible restrictions of exposing services on the public
+  internet. FutureGrid offers the ability to set up private clouds for
+  special projects. Examples include modified OpenStack deployments or
+  reserved resources for classes.
+
+\item[Hybrid cloud:] a combination of public and private clouds. 
+
+\item[Multi-cloud:] access to a number of different clouds that may
+  even use different IaaS or PaaS offerings. 
+
+\item[HPC service:] a cloud service that allows the ability to run high
+  performance computing jobs, for example on a compute cluster
+  offering MPI. 
+
+\item[Provisioning:] a set of instructions to install the operating
+  system, data and software to enable access to it. 
+
+\item[Rain:] an advanced set of instructions that not only provisions
+  the operating system, but allows the deployment and configuration of
+  useful and complex services to be run on one or multiple machines in
+  order to provide a service utilizing potentially distributed
+  resources or services.  It also contains the ability to re-provision
+  servers and services, that is services may be suspended and the
+  resources used to run the service may be used by other services.
+
+\item[Provider consortium:] is a (virtual) organization that
+  integrates resources from multiple providers. We also can refer to
+  such a consortium as a multi-cloud Grid.
+
+\end{description}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Requirements} \label{S:requirements}).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+TBD
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}\label{S:related}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\todo{READ}
+It is not possible to provide an extensive overview of related
+research due to space limitations of this paper. Instead we provide
+examples of activities that address similar but not the same issues
+as our work.
+
+\begin{description}[leftmargin=0pt,itemsep=0pt,topsep=0pt]
+
+\item[Phantom] \cite{phantom12,www-phantom} is a tools that monitors
+  the health of resources and automatically provisions and configures
+  new ones based on demand. IT is designed to automatically (a)
+  provisioning new resources to counteract failures or (b) react to
+  increasing demand reducing constant attention and repetitive task
+  that can be automated.  
+
+  Our effort is different as our framework is targeted not only on the
+  user initiated federation of resources, the access to the native
+  protocols that are not exposed in libcloud as used by this effort
+  and relying on the EC2 protocol, as well as the concept of acces sto
+  bare metal provisioning. Furthermore, our framework includes the
+  ability to provide a holistic cloud usage service, that can be used
+  to develop holistic scheduling algorithms for better utilization.
+
+\item[RightScale] \cite{Rightscale} enables users to manage
+  multi-cloud infrastructure by migrating workloads between private
+  clouds and public clouds. RightScale interfaces with a wide variety
+  of clouds including Amazon Web Services (AWS), Rackspace Cloud,
+  Windows Azure, and Google Compute Engine. In addition it also offers
+  a cloud cost estimator allowing customers to assess expenses they
+  are charged by comparing their workload on various cloud providers.
+
+  Our effort is different as it is an open source toolkit and allows
+  the deployment not only as a hosted service managed by one entity,
+  but allows the deployment by a provider, provider consortium, or
+  even the user. 
+
+%\item[StarCluster] \cite{www-starcluster} StarCluster is a toolkit to
+%  simplify the process of building, configuring, and managing clusters
+%  of virtual machines on Amazon's EC2 cloud. 
+
+\end{description}
+
+Other research efforts include theoretical definitions for Cloud
+Federation \cite{kurze2011cloudfederation} or are relying on a single
+IaaS such as the efforts planed for future versions of
+OpenStack. Standard efforts such as OCCI provide naturally an
+interesting approach of multi-cloud interoperability, but at the same
+time may hinder the innovation brought forward by individual IaaS
+offerings. We see such difference for example in the difference
+between the OpenStack and EC2 API's leading for example to limitations
+in the functionality of Phantom while relying on the EC2 quasi-standrad protocol.
+
+\todo{DO NOT READ TILL YOU FIND ANOTHER READ}
 
 \subsection{FutureGrid}
 
@@ -176,16 +293,15 @@ Within the traditional high performance computing services FG offers a tradition
 One of the main features of FutureGrid is to offer its users a variety
 of infrastructure as a service frameworks
 \cite{comparisoncloud,las2011virt} including OpenStack, Eucalyptus,
-and Nimbus. These frameworks provide Based on our experience
-with FutureGrid over the last couple of years, it is advantageous to
-offer a mixed operation model. This includes a standard production
-cloud that operates on-demand, but also a set of cloud instances that
-can be reserved for a particular project. We have conducted this for
-several projects in FutureGrid, including those that required
-dedicated access to resources as part of big data research such as
-classes \cite{fg405,fg368} or research projects with extremely large
-virtual machines \cite{fg298}.
-
+and Nimbus. These frameworks provide Based on our experience with
+FutureGrid over the last couple of years, it is advantageous to offer
+a mixed operation model. This includes a standard production cloud
+that operates on-demand, but also a set of cloud instances that can be
+reserved for a particular project. We have conducted this for several
+projects in FutureGrid, including those that required dedicated access
+to resources as part of big data research such as classes
+\cite{fg405,fg368} or research projects with extremely large virtual
+machines \cite{fg298}.
 
 \subsection{Federation}
 
@@ -201,124 +317,16 @@ Administrative federation
 \cite{kurze2011cloudfederation}
 
 
-\subsection{Definitions}
-
-To define the federated services that we support with our efforts, we will be
-using the following definitions throughout the paper.
-
-\begin{description}
-   \setlength{\itemsep}{0pt}
-   \setlength{\parsep}{0pt}
-
-\item[public-cloud:]  a service provider makes resources available to
-  usres over the public Internet. This includes compute, storage, and
-  applications. FutureGrid offers to its users a public cloud. 
-
-\item[private-cloud:] access to services may be having additional
-  restrictions. Restrictions could include a limited set of authorized
-  users to the services offered or  possible restrictions of exposing services on the public
-  internet. FutureGrid offers the ability to set up private clouds for
-  special projects. Examples include modified OpenStack deployments or
-  reserved resources for classes.
-
-\item[hybrid-cloud:] a combination of public and private clouds. 
-
-\item[multi-cloud:] access to a number of different clouds that may
-  even use different IaaS or PaaS offerings. 
-
-\item[hpc-service:] a cloud service that allows the ability to run high
-  performance computing jobs, for example on a compute cluster
-  offering MPI. 
-
-\item[provisioning:] a set of instructions to install the operating
-  system, data and software to enable access to it. 
-
-\item[rain:] an advanced set of instructions that not only provisions
-  the operating system, but allows the deployment and configuration of
-  useful and complex services to be run on one or multiple machines in
-  order to provide a service utilizing potentially distributed
-  resources or services.  It also contains the ability to re-provision
-  servers and services, that is services may be suspended and the
-  resources used to run the service may be used by other services.
-
-\item[provider consortium:] is a (virtual) organization that
-  integrates resources from multiple providers. We also can refer to
-  such a consortium as a multi-cloud Grid.
-
-\end{description}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Related Work}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{description}
-
-\item[Phantom] \cite{phantom12,www-phantom} is a tools that monitors the health of resources and
-  automatically provisions and configures new ones based on demand. IT
-  is designed to automatically (a) provisioning new
-  resources to counteract failures or (b) react to increasing demand
-  reducing  constant attention and repetitive task that can be
-  automated. 
-
-\item[RightScale] \cite{Rightscale} enables users to manage multi cloud infrastructure
-  by migrating workloads between private clouds and public
-  clouds. RightScale is by now interfacing with a wide variety of
-  clouds including Amazon Web Services (AWS), Rackspace Cloud,
-  Windows Azure, and Google Compute Engine. In addition it also offers
-  a cloud cost estimator allowing customers to assess expenses 
-  they are charged by comparing their workload on various cloud
-  providers.
-
-\item[StarCluster] \cite{www-starcluster} ``StarCluster is an open source cluster-computing toolkit for Amazon's Elastic Compute Cloud (EC2). StarCluster has been designed to simplify the process of building, configuring, and managing clusters of virtual machines on Amazon's EC2 cloud.''
-
-\end{description}
-
-
-
-
-spot pricing, mit 
-
-\begin{verbatim}
-http://www.aifb.kit.edu/images/0/02/Cloud_Federation.pdf
-\end{verbatim}
-
-library federation
-
-protocol
-
-intercloud
-
-hybrid cloud federation
-
-regions
-
-
-Icehouse
-Federation is the first new feature listed on Keystone's release notes for Icehouse:
-
-  \url{https://wiki.openstack.org/wiki/ReleaseNotes/Icehouse#OpenStack_Identity_.28Keystone.29}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Requirements}
+\section{Design}\label{S:design}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 TBD
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Design}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-TBD
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Design}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-TBD
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Implementation}
+\section{Implementation}\label{S:implementation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 TBD
@@ -330,8 +338,43 @@ TBD
 TBD
 
 
-\section{OLD}
+\section{Code}
 
+\begin{figure}[htb]
+\begin{small}
+\begin{verbatim}
+class ComputeBaseType:
+    flavors = {}, images = {}, servers = {}
+    // Methods
+    def __init__(self, label, cred=None):
+    def connect(self):
+    def get(self, type): type in {server, images, flavors, 
+                                  users, tennant}
+    def refresh(self, type=None):
+    def vm_create(self, name=None,
+                  flavor_name=None,
+                  image_id=None,
+                  security_groups=None,
+                  key_name=None,
+                  meta=None):
+    def vm_delete(self, id):
+    def rename(self, old, new, id=None):
+    def usage(self, start, end, format='dict'):
+    def limits(self):
+    def wait(self, vm_id, vm_status, seconds=2):
+    def __str__(self):
+    def vms(self):
+    def status(self, vm_id):
+    def set_credentials(self, cred):
+    def keypair_list(self):
+    def keypair_add(self, keyname, keycontent):
+    def keypair_remove(self, keyname):
+\end{verbatim}
+\end{small}
+\vspace{-12pt}
+\caption{Abstract interface to access different virtual machine
+  management functionality}
+\end{figure}
 
 \section{Cloudmesh}\label{S:cloudmesh}
 
@@ -340,7 +383,7 @@ At \cite{github-cloudmesh} we find an extensive set of information about Cloudme
 From the experience with FutureGrid we identified the need for a more tightly integrated software infrastructure addressing the need to deliver a software-defined system encompassing virtualized and bare-metal infrastructure, networks, application, systems and platform software with a unifying goal of providing Cloud Testbeds as a Service (CTaaS). This system is termed Cloudmesh to symbolize 
 
 
-\begin{enumerate}[(a)]
+\begin{enumerate}[leftmargin=*,itemsep=0pt,topsep=0pt]
 
 
 \item the creation of a tightly integrated mesh of services targeting multiple IaaS frameworks 
@@ -462,7 +505,9 @@ Despite the fact that Cloudmesh was originally a quite sophisticated command she
     services that could even spawn multiple resources.}\label{F:oneclick}
 \end{figure}
 
-\section{Cloud Metrics}
+\subsection{Cloud Metrics}
+
+\todo{READ}
 
 Based on lessons learned from FutureGrid, knowledge of the resource
 allocation and utilization is important to provide users and
@@ -509,7 +554,9 @@ part of projects (Section \ref{S:user-metric}), as well as administrative users
 (Section \ref{S:resource-metric}).
 
 
-\subsection{User- and Project-based Metrics Services}\label{S:user-metric} 
+\subsubsection{User- and Project-based Metrics Services}\label{S:user-metric} 
+
+\todo{READ}
 
 In order for users to use a variety of clouds it is important for them
 to monitor and compare their resource utilization on them. In case the
@@ -521,7 +568,9 @@ based on individual user utilization, group, utilization, or even
 experiment utilization, where a particular experiment is analyzed
 instead of just looking at the total utilization.
 
-\subsection{Resource Provider-based Metrics Services} \label{S:resource-metric}.
+\subsubsection{Resource Provider-based Metrics Services} \label{S:resource-metric}
+
+\todo{READ}
 
 For the resource provider it is important to have access to a holistic
 view of the a variety of metrics across a the various clouds that
@@ -533,7 +582,9 @@ actual {\em resources} for which administrative access exists in order
 to provide a holistic set of metrics.
 
 
-\subsection{Metric Access for Multi-cloud Environments} 
+\subsubsection{Metric Access for Multi-cloud Environments} 
+
+\todo{READ}
 
 Due to the different governance models between a private cloud managed
 as part of a provider consortium, and the integration of resources
@@ -549,9 +600,11 @@ employed in clouds and depicted in Figure \ref{F:metric-hierarchy}.
   \label{F:metric-hierarchy}
 \end{figure}
 
-\subsubsection{Integration into a Provider Consortium Managed Multi-Cloud}
+\paragraph{Integration into a Provider Consortium Managed Multi-Cloud}
 
 \newcommand{\ARROW}{$\Rightarrow$}
+
+\todo{READ}
 
 In the hierarchy we distinguish user \ARROW project with many users
 \ARROW a resource serving many projects \ARROW a Provider having many
@@ -581,7 +634,9 @@ it would be possible to devise other integration policies while for
 example restricting access for just approved projects, or provide
 access into different levels of the hierarchy.
 
-\subsubsection{Integration into a User Managed Multi-Cloud}
+\paragraph{Integration into a User Managed Multi-Cloud}
+
+\todo{READ}
 
 Based on our experience with FutureGrid, we must also be aware that
 users may have their own accounts and access to other clouds to
@@ -599,7 +654,9 @@ allow the users or project to access the information provided by the
 public clouds.
 
 
-\subsection{Cloudmesh Metric Architecture}
+\paragraph{Cloudmesh Metric Architecture}
+
+\todo{READ}
 
 The Cloudmesh metric architecture is based on the integration of a
 authorized REST service, that utilizes a simple abstraction layer to interface
@@ -612,7 +669,9 @@ AMPQ. Adapters can be written to integrate new information providers
 for other clouds. Policies can be used to limit the amount of
 information presented to other users or projects.
 
-\subsection{Cloudmesh Metric Service for FutureGrid}
+\subsubsection{Cloudmesh Metric Service for FutureGrid}
+
+\todo{READ}
 
 To work towards the goal of a metric system for multi-cloud
 environments, we start by basing our initial
@@ -626,7 +685,9 @@ access policy for using the resources is public as this is most
 suitable to the goals of FutureGrid as a public testbed including
 cloud frameworks. 
 
-\subsubsection{Data Collector and Metric service}
+\paragraph{Data Collector and Metric service}
+
+\todo{READ}
 
 %\begin{figure}[htb]
 %  \centering
@@ -710,7 +771,7 @@ currently running, on which system and by whom.
     ~~Hotel    & \YES & \YES & \NO \\
     ~~India     & \NO  & \YES & \YES \\
     ~~Sierra    & \NO & \YES & \YES \\
-    ~~Lima     & ?       &  ?      &  ?       \\   
+%    ~~Lima     & ?       &  ?      &  ?       \\   
     \hline
 %    Region& \shortstack[l]{TACC$^1$, \\UF$^2$, \\UChicago$^3$, \\SDSC$^4$} & \shortstack[l]{TACC, \\IU$^5$, \\SDSC } & \shortstack[l]{IU, \\SDSC$^6$} \\
 %    \hline
@@ -725,7 +786,10 @@ currently running, on which system and by whom.
 \end{table}
 
 
-\subsubsection{Metric Analyzer}
+\paragraph{Metric Analyzer}
+
+
+\todo{READ}
 
 The data collected provides the opportunity to analyze it for specific
 needs in a repeated fashion or provide filters and services for
@@ -745,47 +809,53 @@ facilitate fast and distributed calculation of the results by multiple
 users, we will base future versions of the Cloudmetric system on NoSQL
 database technologies. 
 
-\subsection{Metric Interface}
+\paragraph{Metric Interface}
+
+
+\todo{READ}
 
 Early on we recognized the access the information and the metrics must
 be provided through a variety of interfaces. This includes command
 shells, programming API's, REST interfaces, graphical user interfaces,
 and printable reports.
 
-{\bf Interactive Command Shell.} To simplify the interactive use,
+\begin{description}[leftmargin=*,itemsep=0pt,topsep=0pt]
+
+\item[Interactive Command Shell.] To simplify the interactive use,
 we have developed a python command shell called CMD3 that allows the
 dynamic load of additional commands, thus making it ideal to define
 new analytic methods on the fly if they are not provided by the
 original toolkit.
 
-{\bf REST API.} To allow easy access from Web frameworks, but
+\item[REST API.] To allow easy access from Web frameworks, but
 also integration form arbitrary programming languages, we are
 currently building access through a convenient REST API.
 
-{\bf Programming API.} We have provided a robust API interface
+\item[Programming API.] We have provided a robust API interface
 in python to access the basic  analytical functions useful for many
 users and reused by the interactive command shell and the REST service.
 
-{\bf Graphical Representation and Printable Reports.}
+\item[Graphical Representation and Printable Reports.] ~\\ Using our basic
+  API and command shell, we have integrated them into the Python
+  sphinx framework \cite{brandl2009sphinx} to expose the metric data
+  in a convenient form and present the data online via charts
+  ~\cite{highsoft2012highcharts} or in a PDF report. As sphinx offers
+  the export of data reports in PDF we leverage this framework and do
+  not have to develop a separate frame work for it. The sphinx
+  framework service is currently enhanced to allow customizable
+  interactive queries to the metric and data sources. The data can be
+  represented easily in various chart forms such as bar graphs, line
+  charts, or pie charts. A template for generating a quarterly and
+  yearly report of the data exists making adaptation to additional
+  resources or other provider consortia easy. Furthermore, the data
+  can be exported in a variety of formats such as JSON or csv making
+  it possible to use other tools such as excel for data post
+  processing.  In Table~\ref{T:iaas-with-graph} we are including a
+  limited number of examples to demonstrate the various data
+  representations of the Cloudmetric system that are exposed to the
+  users
 
-Using our basic API and command shell, we have integrated them into
-the Python sphinx framework \cite{brandl2009sphinx} to expose the
-metric data in a convenient form and present the data online via
-charts ~\cite{highsoft2012highcharts} or in a PDF report. As sphinx
-offers the export of data reports in PDF we leverage this framework
-and do not have to develop a separate frame work for it. The sphinx
-framework service is currently enhanced to allow customizable
-interactive queries to the metric and data sources. The data can be
-represented easily in various chart forms such as bar graphs, line
-charts, or pie charts. A template for generating a quarterly and
-yearly report of the data exists making adaptation to additional
-resources or other provider consortia easy. Furthermore, the data can
-be exported in a variety of formats such as JSON or csv making it
-possible to use other tools such as excel for data post processing.
-In Table~\ref{T:iaas-with-graph} we are including a limited number of
-examples to demonstrate the various data representations of the
-Cloudmetric system that are exposed to the users 
-
+\end{description}
 
 \begin{table}[h!]
   \caption{Metric visualization with graphs}\label{T:iaas-with-graph}
@@ -821,8 +891,12 @@ Cloudmetric system that are exposed to the users
 \end{center}
 \end{table}
 
+\paragraph{Integration into XSEDE}
+
+TBD
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+\section{Conclusion}\label{S:conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 TBD
@@ -830,25 +904,19 @@ TBD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Acknowledgment 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
- 
-\section*{Acknowledgement} 
- 
+
+
+\section{Acknowledgments}
+
+\todo{READ}
+
 This material is based upon work supported in part by the National Science Foundation under Grant No. 0910812 and OCI 1025159. 
 
-%\clearpage 
- 
-%\bibliographystyle{IEEEtranS}
-\bibliographystyle{IEEEtran}
-%\bibliographystyle{abbrv} 
+\bibliographystyle{abbrvurl}
 \bibliography{% 
 bib/vonLaszewski-jabref.bib,%
 bib/cyberaide-cloud,%
 bib/cyberaide-metric} 
- 
-\end{document} 
 
-
-
-
-
-
+%\balancecolumns 
+\end{document}
