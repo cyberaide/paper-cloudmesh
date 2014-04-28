@@ -105,7 +105,7 @@ services beyond those available by typical clouds.
 
 \terms{Computer-Communication Networks}
 
-\keywords{Cloud, multi-cloud, federated clouds, FutureGrid, cloudmesh}
+\keywords{Cloud, multi-cloud, federated clouds, FutureGrid, Cloudmesh}
 
 \section{Introduction}
 
@@ -125,7 +125,7 @@ which of the many Infrastructures should be chosen? Second, can the
 multitude of IaaS service offerings be leveraged and instead of
 choosing one, can a service be offered that utilizes multiple
 services? Furthermore, we have to consider that the IaaS frameworks to
-deploy provite clouds are evolving and that extensions may be needed
+deploy private clouds are evolving and that extensions may be needed
 that are not yet offered by the frameworks to adequately address the
 requirements posed by advanced IT service infrastructures of research
 organizations.
@@ -138,8 +138,8 @@ the requirements in more detail (Section \ref{S:requirements}) and
 summarize some related work (Section \ref{S:related}).  Then, we
 explore the requirements that motivate our design (Section
 \ref{S:design}) and implementation (Section \ref{S:implementation}).
-We focus on two aspects of the cloudmesh features, namely dynamic
-provisioning/ rain. Lastly, we present our conclusion (Section
+We focus on two aspects of the Cloudmesh features, namely dynamic
+provisioning/ rain. Last, we present our conclusion (Section
 \ref{S:conclusion}).
 
 
@@ -174,21 +174,27 @@ We will be using the following definitions throughout the paper:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-It is not possible to provide an extensive overview of related research due to space limitations of this paper. Instead, we will provide examples of activities that address similar but not the same issues as our work.
+It is not possible to provide an extensive overview of related
+research due to space limitations of this paper. Instead, we will
+provide examples of activities that address similar although not the
+same issues as our work.
 
 \begin{description}[leftmargin=0pt,itemsep=0pt,topsep=0pt]
 
-\item[Phantom] \cite{phantom12} is a tools that monitors
+\item[Phantom] \cite{phantom12} is a tool that monitors
   the health of resources and automatically provisions and configures
-  new ones based on demand. IT is designed to automatically (a)
+  new ones based on demand. It is designed to automatically (a)
   provision new resources to counteract failures or (b) react to
   increasing demand, reducing constant attention and repetitive tasks
   that can be automated.  
 
-  What makes our effort different, is that our framework is focused not only on the
-  user initiated federation of resources, the access to the native
-  protocols that are not only the reliance on EC2 EC2 protocol, as well as the concept of access to
-  bare metal provisioning. Furthermore, our framework includes the ability to provide a holistic cloud usage service, that can be used to develop holistic scheduling algorithms for better utilization.
+  What makes our effort different, is that our framework is focused
+  not only on the user initiated federation of resources, the access
+  to the native protocols that are not only the reliance on EC2 EC2
+  protocol, as well as the concept of access to baremetal
+  provisioning. Furthermore, our framework includes the ability to
+  provide a holistic cloud usage service that can be used to develop
+  holistic scheduling algorithms for better utilization.
 
 \item[RightScale] \cite{Rightscale} enables users to manage multi-cloud infrastructure by migrating workloads between private clouds and public clouds. RightScale interfaces with a wide variety of clouds including Amazon Web Services (AWS), Rackspace Cloud, Windows Azure, and Google Compute Engine. It also offers a cloud cost estimator, allowing customers to assess expenses they are charged by comparing their workload on various cloud providers.
 
@@ -201,16 +207,23 @@ Our effort is different because it is an open source toolkit and allows the depl
 \end{description}
 
 
-Other research efforts include theoretical definitions for cloud federation \cite{kurze2011cloudfederation} or are relying on a single IaaS such as the efforts planned for future versions of OpenStack. Standard efforts such as OCCI naturally provide an interesting approach of multi-cloud interoperability, but at the same time may hinder the innovation brought forward by individual IaaS offerings. We see such an encumbrance with the difference between the OpenStack and EC2 API's, which leads to limitations in the functionality of Phantom.
+Other research efforts include theoretical definitions for cloud
+federation \cite{kurze2011cloudfederation} or are relying on a single
+IaaS, such as efforts planned for future versions of
+OpenStack. Standard efforts provide an interesting approach to
+multi-cloud interoperability, but at the same time may hinder the
+innovation brought forward by individual IaaS offerings. We see such
+an encumbrance with the difference between the OpenStack and EC2
+API's, which leads to limitations in the functionality of Phantom.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{FutureGrid \READ}
+\subsection{FutureGrid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Many of the requirements for this project originate from
 FutureGrid. FutureGrid \cite{las2010gce,las12fg-bookchapter} is a
-project to develop a high performance grid test bed that will allow
+project to develop a high performance grid testbed that will allow
 scientists to collaboratively develop and test innovative approaches
 to parallel, grid, and cloud computing. It provides infrastructure and
 advanced services that are documented in more detail in
@@ -219,19 +232,19 @@ deploy their own hardware and software configurations on a
 public/private cloud, and run their experiments. FutureGrid provides
 an advanced framework to manage user and project affiliation and
 propagates this information to a variety of subsystems constituting
-the FG service infrastructure. This includes operational services to
+the FutureGrid service infrastructure. This includes operational services to
 deal with authentication, authorization and accounting. In particular
 we have developed a unique metric framework
 \cite{las08federated-cloud} that allows us to create usage reports
-from our entire Infrastructure as a Service frameworks and is
+from our entire IaaS frameworks and is
 presented in more detail later. Repeatable experiments can be created
 with a number of tools including Pegasus, Precip and
 Cloudmesh. Provisioning of services and images can be conducted by
 Rain \cite{imagemanagement,fg-1295}.
 One of the main features of FutureGrid is to offer its users a variety
-of infrastructure as a service frameworks
+of IaaS frameworks
 \cite{comparisoncloud} including OpenStack, Eucalyptus,
-and Nimbus. These frameworks provide Based on our experience with
+and Nimbus. Based on our experience with
 FutureGrid over the last couple of years, it is advantageous to offer
 a mixed operation model. This includes a standard production cloud
 that operates on-demand, but also a set of cloud instances that can be
@@ -260,7 +273,7 @@ reserved for a particular project.
 \end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Requirements \READ} \label{S:requirements}
+\section{Requirements} \label{S:requirements}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We list here a subset of requirements that are to be addressed by the
@@ -271,18 +284,18 @@ partners, (a.3) public clouds; (b) provide multi-cloud services
 controled by the user; (c) provide multi-cloud services controlled by
 the provider; (d) enable deployment of the service by users or
 providers; (e) enable raining (e.1) of operating systems (bare-metal
-provisioning), (e.2) services, (e.3) platforms, (e.4) IaaS; (g)
-monitoring infrastructure accross a multi-cloud environment; (h)
-provid multiple interfaces such as (h.1) command line, (h.2) command shell, (h.3) REST,
-(h.4) Python API; (i) deliver an (i.1) open source (i.2) extensible (i.3) easy
-deployable, (i.4) documented toolkit.
+provisioning), (e.2) services, (e.3) platforms, (e.4) IaaS; (f)
+monitoring infrastructure accross a multi-cloud environment; (g)
+provid multiple interfaces such as (g.1) command line, (g.2) command shell, (g.3) REST,
+(g.4) Python API; (h) deliver an (h.1) open source (h.2) extensible (h.3) easy
+deployable, (h.4) documented toolkit.
 
 As open source project much of the presented material in the next
 sections can be found in its online Web page
 \cite{github-cloudmesh}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Design \READ}\label{S:design}
+\section{Design}\label{S:design}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Our initial design is addressing the requirments listed in
@@ -295,7 +308,7 @@ software with a unifying goal of providing Cloud Testbeds as a Service
 
 \begin{enumerate}[leftmargin=*,itemsep=0pt,topsep=0pt]
 
-\item the creation of a tightly integrated mesh of services targeting
+\item the creation of a tightly integrated mesh of serviceto sys targeting
   multiple IaaS frameworks (Requirement (a)), 
 
 \item the ability to federate a number of resources from academia and
@@ -308,16 +321,29 @@ software with a unifying goal of providing Cloud Testbeds as a Service
   deploy them more easily (Requirement (e)).  
 
 \item the exposure of information to guide the efficient utilization
-  (Requiremnet (g))
+  (Requiremnet (f))
 
 \end{enumerate}
 
-In addition to virtual resources, FutureGrid exposes bare-metal
-provisioning to users, but also a subset of HPC monitoring
-infrastructure tools. Services will be available through command line,
-API, and Web interfaces (Requirement (h)).
+In addition to virtual resources, Cloudmesh exposes baremetal
+provisioning to users. Services will be available through command line,
+API, and Web interfaces (Requirement (g)).
 
-Due to its integrated services Cloudmesh provides the ability to be an onramp for other clouds. It also provides information services to various system level sensors to give access to sensor and utilization data. They internally can be used to optimize the system usage. The provisioning experience from FutureGrid has taught us that we need to provide the creation of new clouds, the repartitioning of resources between services (cloud shifting), and the integration of external cloud resources in case of over provisioning (cloud bursting). As we deal with many IaaS we need an abstraction layer on top of the IaaS framework. Experiment management is conducted with workflows controlled in shells \cite{cmd3}, Python/iPython, as well as systems such as OpenStack's Heat, Accounting is supported through additional services such as user management and charge rate management. Not all features are yet implemented. Figure \label{F:cm-func} shows the main functionality that we target at this time to implement.
+Due to its integrated services Cloudmesh provides the ability to be an
+onramp for other clouds. It also provides information services to
+various system level sensors to give access to sensor and utilization
+data. Internally, it can be used to optimize the system usage. The
+provisioning experience from FutureGrid has taught us that we need to
+provide the creation of new clouds, the repartitioning of resources
+between services (cloud shifting), and the integration of external
+cloud resources in case of over provisioning (cloud bursting). As we
+deal with many IaaS frameworks, we need an abstraction layer on top of
+the IaaS framework. Experiment management is conducted with workflows
+controlled in shells \cite{cmd3}, Python/iPython, as well as systems
+such as OpenStack's Heat. Accounting is supported through additional
+services such as user management and charge rate management. Not all
+features are yet implemented. Figure \label{F:cm-func} shows the main
+functionality that we target at this time to implement.
 
 
 \begin{figure}[htb]
@@ -326,12 +352,12 @@ Due to its integrated services Cloudmesh provides the ability to be an onramp fo
   \caption{Cloudmesh Functionality.}\label{F:cm-func}
 \end{figure}
 
-To implement the cloudmesh functionality we have devised a layered
+To implement the Cloudmesh functionality, we have devised a layered
 architecture to gradually provide services in support of the
 requiremennts identified for our toolkit. 
 
 The architecture is depicted in Figure~\ref{F:arch} and conatains
-threem anin layers, the resource layer, the provisioning and execution
+threem main layers: the resource layer, the provisioning and execution
 layer, and the management framework layer.
 
 \begin{comment}
@@ -345,64 +371,92 @@ layer, and the management framework layer.
   \caption{Cloudmesh Architecture.}\label{F:arch}
 \end{figure}
 
-\subsection{Managament Framework Layer \READ}
+\subsection{Management Framework Layer}
 
 \begin{description}[leftmargin=0pt,itemsep=0pt,topsep=0pt]
 
-\item[User and Project Services.] FutureGrid user and project services simplify the application processes needed to obtain user accounts and projects. We have demonstrated in FutureGrid the ability to create accounts in a very short time, including vetting projects and users -- allowing fast turn-around times for the majority of FutureGrid projects with an initial startup allocation. Cloudmesh reuses this infrastructure and also allows users to manage proxy accounts to federate to other IaaS services to provide an easy interface to integrate them.
+\item[User and Project Services.] FutureGrid user and project services
+  simplify the application processes needed to obtain user accounts
+  and projects. We have demonstrated in FutureGrid the ability to
+  create accounts in a very short time, including vetting projects and
+  users -- allowing fast turn-around times for the majority of
+  FutureGrid projects with an initial startup allocation. Cloudmesh
+  reuses this infrastructure and also allows users to manage proxy
+  accounts to federate to other IaaS services to provide an easy
+  interface to integrate them.
 
-\item[Accounting and App Store.] To lower the barrier of entry Cloudmesh will be providing a shopping cart which will allow checking out of predefined repeatable experiment templates. A cost is associated with an experiment making it possible to engage in careful planning and to save time by reusing previous experiments. Additionally, the Cloudmesh App Store may function as a clearing-house of images, image templates, services offered and provisioning templates. Users may package complex deployment descriptions in an easy parameter/form-based interface and other users may be able to replicate the specified setup with.
-Due to our advanced Cloudmesh Metrics framework we are in the position to further develop an integrated accounting framework allowing a usage cost model for users and management to identify the real impact of an experiment on resources. This will be useful to avoid overprovisioning and inefficient resource usage. The cost model will be based not only on number of core hours used, but also the capabilities of the resource, the time, and special support it takes to set up the experiment. We will expand upon the metrics framework of FutureGrid that allows measuring of VM and HPC usage and associate this with cost models. Benchmarks will be used to normalize the charge models.
+\item[Accounting and App Store.] To lower the barrier of entry,
+  Cloudmesh will be providing a shopping cart, which will allow
+  checking out of predefined repeatable experiment templates. A cost
+  is associated with an experiment making it possible to engage in
+  careful planning and to save time by reusing previous
+  experiments. Additionally, the Cloudmesh App Store may function as a
+  clearing-house of images, image templates, services offered and
+  provisioning templates. Users may package complex deployment
+  descriptions in an easy parameter/form-based interface and other
+  users may be able to replicate the specified setup.  Due to our
+  advanced Cloudmesh Metrics framework we are in the position to
+  further develop an integrated accounting framework allowing a usage
+  cost model for users and management to identify the real impact of
+  an experiment on resources. This will help avoid
+  overprovisioning and inefficient resource usage. The cost model will
+  be based not only on number of core hours used, but also the
+  capabilities of the resource, the time, and special support it takes
+  to set up the experiment. We will expand upon the metrics framework
+  of FutureGrid that allows measuring of VM and HPC usage and
+  associate this with cost models. Benchmarks will be used to
+  normalize the charge models.
 
 \end{description}
 
-\subsection{Provisioning and Execution Layer \READ}
+\subsection{Provisioning and Execution Layer}
 
 \begin{description}[leftmargin=0pt,itemsep=0pt,topsep=0pt]
 
 \item[Baremetal Provisioning.] We have a broad vision of resource
-  integration rources offering different levels of control from bare
+  integration offering different levels of control from bare
   metal to use of a portion of a resource. As part of our efforts we
   originally developed a provisioning framework based on XCAT. However
   due to limitations and significant changes between versions we are
   currently replacing it with a more general framework that allows the
   utilization of different bare metal provisioners. At this time we
-  have provided an interface for cobbler and are targeting also an
+  have provided an interface for cobbler and are also targeting an
   interface to OpenStack Ironic.
 
 \item[Virtual Machine Provisioning.] Cloudmesh provides an abstraction
-  layer to alow the integration of virtual machine management APIs
+  layer to allow the integration of virtual machine management APIs
   based on the native IaaS service protocols. This helps in exposing
   features that are otherwise not accessible when quasi protocol
-  standards such as EC2 are used on non AWS IaaS frameworks. It also
-  prevents for example limitations that exist in current
-  implementations such as libcloud to use for example OpenStack.
+  standards such as EC2 are used on non-AWS IaaS frameworks. It also
+  prevents limitations that exist in current implementations, such as
+  libcloud to use OpenStack.
 
 \item[Network Provisioning.] Likewise, we must utilize networks
 offering various levels of control, from standard IP connectivity to
 completely configurable SDNs as novel cloud architectures will almost
 certainly leverage NaaS and SDN alongside system software and
 middleware. FutureGrid resources will make use of SDN using OpenFlow
-whenever possible and the same level of networking control will not be
+whenever possible though the same level of networking control will not be
 available in every location.
 
-\item[Storage Provisioning.] As we have access to bare metal
-  provisioning storage provisioning becomes a possibility while
-  keeping partions between deployments. However, we will have to
-  expand upon making storage provisioning accessible to the users.
+\item[Storage Provisioning.] As we have access to baremetal
+  provisioning storage, provisioning becomes a possibility while
+  keeping partions between deployments and experiments. However, we
+  will have to expand upon making storage provisioning accessible to
+  the users.
 
 \item[Platform, IaaS, and Federated Provisioning.] One of the
-  significant features of the design of Cloudmesh is that can not only
+  significant features of the design of Cloudmesh is that it can not only
   provision the operating system, but that through additional services
   it can also provision platforms, IaaS, and even federated
-  services. This is achieved by the integartion of cloudmesh shell
+  services. This is achieved by the integration of cloudmesh shell
   scripting, or the utilization of DevOps frameworks such as Chef or Puppet. 
 
   Furthermore, we have already demonstrated via the Rain tool in
   FutureGrid that it is possible to {\em shift} resources
   allocations between services such as HPC and OpenStack or
   Eucalyptus. We are currently expanding upon this idea and developing
-  more easy to use user interfaces as part of Cloudmesh that assist
+  intuitive user interfaces as part of Cloudmesh that assist
   administrators and users through role and project based
   authentication to move resources from one service to another (see
   Figure \ref{F:shift}).
@@ -427,7 +481,7 @@ from our distributed user directory.
 
 For (b) several toolkits exist to create user-based federations,
 including our own abstraction level which supports interoperability
-via libcloud, but more importantly it supports directly the native
+via libcloud, but more importantly it directly supports the native
 OpenStack protocol and overcomes limitations of the EC2 protocol and
 the libcloud compatibility layer. Plugins that we currently develop
 will enable access to clouds via firewall penetration, abstraction
@@ -451,22 +505,28 @@ of cloud-shifting.
 \subsection{Monitoring}
 
 \begin{comment}
-\paragraph{System Monitoring and Operations. \READ}
-The management framework contains services to facilitate FutureGrid day-to-day operation, including federated or selective monitoring of the infrastructure. Cloudmesh leverages FutureGrid for the operational services and allows administrators to view ongoing system status and experiments, as well as interact with users through ticket systems and messaging queues to inform subscribed users on the status of the system.
+\paragraph{System Monitoring and Operations.}
+The management framework contains services to facilitate FutureGrid
+day-to-day operation, including federated or selective monitoring of
+the infrastructure. Cloudmesh leverages FutureGrid for the operational
+services and allows administrators to view ongoing system status and
+experiments, as well as interact with users through ticket systems and
+messaging queues in order to inform subscribed users on the status of
+the system.
 
 
 
 
 
 
-\paragraph{Monitoring \READ}
+\paragraph{Monitoring}
 \end{comment}
 
 
 Cloudmesh must be able to access empirical data about the properties
 and performance of the underlying infrastructure beyond what is
 available from commercial cloud environments. The component of
-Coudmesh acomplishing this is called {\em Cloud Metrics}.
+Cloudmesh accomplishing this is called {\em Cloud Metrics}.
 
 
 \begin{comment}
@@ -491,11 +551,11 @@ the infrastructure in order to guide better utilization overall and on
 an individual basis. This is crucial in cloud deployments such as
 FutureGrid, which supports more than 380 projects and 2300 users (as
 of April 2014). Due to such a large user base, resources could become
-over provisioned or not properly utilized by the users. Among the many
-services that FutureGrid offers many services, we have particularly
-focussed on IaaS including OpenStack, Eucalyptus, Nimbus, as well as
+over-provisioned or not properly utilized by the users. Among the many
+services that FutureGrid offers, we have particularly
+focused on IaaS including OpenStack, Eucalyptus, Nimbus, as well as
 batch systems, to offer high performance computing capabilities.
-However, for this paper we will restrict our discussion on the IaaS
+However, for this paper we will restrict our discussion to the IaaS
 based monitoring components.  Other HPC related activities in regards
 to monitoring and metrics are discussed in \cite{las13xdmod}.
 
@@ -515,7 +575,7 @@ In order for users to use a variety of clouds, it is important for them to monit
 
 \subsubsection{Resource Provider-based Metrics Services} \label{S:resource-metric}
 
-For the resource provider, it is important to have access to a holistic view of the variety of metrics across the different clouds that build the multi-cloud environment as part of a provider consortium.  Summary information may be customized based on the requirements by individual users, project leads, resource providers, site managers, and funding agencies. This information is typically restricted to the actual {\em resources} for which administrative access exists in order to provide a holistic set of metrics.
+A resource provider need to have access to a holistic view of the variety of metrics across the different clouds that build the multi-cloud environment as part of a provider consortium.  Summary information may be customized based on the requirements by individual users, project leads, resource providers, site managers, and funding agencies. This information is typically restricted to the actual {\em resources} for which administrative access exists in order to provide a holistic set of metrics.
 
 \subsubsection{Metric Access for Multi-cloud Environments} 
 
@@ -536,7 +596,7 @@ Due to the different governance models between a private cloud managed as part o
 
 In the hierarchy, we distinguish users \ARROW project with many users \ARROW a resource serving many projects \ARROW a provider having many resources \ARROW and a provider consortium with many providers.
 
-The provider consortium has a multitude of possibilities to extend their resource offerings to its users while integrating public clouds. This could include replicating projects on public clouds, or assigning a particular user access to an account that integrates resources in a public cloud. In case multiple clouds are offered, this integration could be replicated for them. Hence, it would be possible for a provider consortium not only to provide private clouds as part of a multi-cloud environment, but also public cloud offerings allowing access to these public clouds through a provider consortium managed project or users on the public clouds. This is of particular interest if we intend to gain financial advantages through volume discounts that would otherwise not be available to the users.  In Figure \ref{F:metric-hierarchy} we show one example for such an integration policy where we simply map the existing projects and users of the consortium to projects and users of a public cloud. An applicable instance where such integration is easy to accomplish is the HP Cloud environment that uses OpenStack as its IaaS framework. Due to OpenStack's well documented interfaces, it is possible to replicate the user and project information and provide detailed charges to the users on projects in case the HP OpenStack cloud would be used. Naturally, it would be possible to devise other integration policies such as restricting access to only approved projects, or provide limited access into different levels of the hierarchy.
+The provider consortium has a multitude of possibilities to extend their resource offerings to its users while integrating public clouds. This could include replicating projects on public clouds, or assigning a particular user access to an account that integrates resources in a public cloud. In case multiple clouds are offered, this integration could be replicated for them. Hence, it would be possible for a provider consortium not only to provide private clouds as part of a multi-cloud environment, but also public cloud offerings allowing access to these public clouds through a provider consortium managed project or users on the public clouds. This is of particular interest if we intend to gain financial advantages through volume discounts that would otherwise not be available to the users.  In Figure \ref{F:metric-hierarchy} we show one example for such an integration policy where we simply map the existing projects and users of the consortium to projects and users of a public cloud. An applicable instance where such integration is easy to accomplish is the HP Cloud environment that uses OpenStack as its IaaS framework. Due to OpenStack's well-documented interfaces, it is possible to replicate the user and project information and provide detailed charges to the users on projects in case the HP OpenStack cloud would be used. Naturally, it would be possible to devise other integration policies such as restricting access to only approved projects, or provide limited access into different levels of the hierarchy.
 
 
 \paragraph{Integration into a User Managed Multi-Cloud}
@@ -638,11 +698,28 @@ Early on we recognized that the access of information and the metrics must be pr
 
 \item[Interactive Command Shell.] To simplify the interactive use, we have developed a python command shell called CMD3 that allows the dynamic load of additional commands, thus making it ideal to define new analytic methods on the fly if they are not provided by the original toolkit.
 
-\item[REST API.] To allow easy access from Web frameworks, but also integration from arbitrary programming languages, we are currently building access through a convenient REST API.
+\item[REST API.] We are currently building access through a convenient REST API to allow easy access from Web frameworks, but also integration from arbitrary programming languages
 
 \item[Programming API.] We have provided a robust API interface in python to access the basic analytical functions useful for many users and reused by the interactive command shell and the REST service.
 
-\item[Graphical Representation and Printable Reports.] ~\\ Using our basic API and command shell, we have integrated them into the Python sphinx framework to expose the metric data in a convenient form and present the data online via charts or in a PDF report. As sphinx offers the export of data reports in PDF, we leverage this framework and do not have to develop a separate framework for it. The sphinx framework service is currently enhanced to allow customizable interactive queries to the metric and data sources. The data can be represented easily in various chart forms such as bar graphs, line charts, or pie charts. A template for generating a quarterly and yearly report of the data exists making adaptation to additional resources or other provider consortia easy. Furthermore, the data can be exported in a variety of formats such as JSON or CSV making it possible to use other tools, such as excel for data post processing.  In Table~\ref{T:iaas-with-graph} we are including a limited number of examples to demonstrate the various data representations of the Cloudmetric system that are exposed to the users.
+\item[Graphical Representation and Printable Reports.] ~\\ Using our
+  basic API and command shell, we have integrated them into the Python
+  sphinx framework to expose the metric data in a convenient form and
+  present the data online via charts or in a PDF report. As sphinx
+  offers the export of data reports in PDF, we leverage this framework
+  and do not have to develop a separate framework for it. The sphinx
+  framework service is currently enhanced, allowing customizable
+  interactive queries to the metric and data sources. The data can be
+  represented visually in various chart forms such as bar graphs, line
+  charts, or pie charts. A template for generating a quarterly and
+  yearly report of the data exists making adaptation to additional
+  resources or other provider consortia easy. Furthermore, the data
+  can be exported in a variety of formats such as JSON or CSV making
+  it possible to use other tools, such as excel for data post
+  processing.  In Table~\ref{T:iaas-with-graph} we are including a
+  limited number of examples to demonstrate the various data
+  representations of the Cloudmetric system that are exposed to the
+  users.
 
 \end{description}
 
@@ -682,9 +759,20 @@ Early on we recognized that the access of information and the metrics must be pr
 
 
 
-\subsection{Graphical User Interface \READ}
+\subsection{Graphical User Interface}
 
-Despite the fact that Cloudmesh was originally a quite sophisticated command shell and command line tool, we have spend recently more time in exposing this functionality through a convenient Web interface. Some more popular views if this interface are depicted in Figure \ref{F:instances} hinting on how easy it is with a single button to create multiple VMs across a variety of IaaS. Also nice is that this not only includes resources at IU but also at external locations. Pushing this easy management in a more sophisticated experience for the user while associating one-click deployments that include the ability to deploy virtual clusters, Hadoop environments, and other more elaborate setups we provide an early prototype screenshot in Figure \ref{F:oneclick}.
+Despite the fact that Cloudmesh was originally a quite sophisticated
+command shell and command line tool, we recently dedicated more time
+in exposing this functionality through a convenient Web
+interface. Some more popular views if this interface are depicted in
+Figure \ref{F:instances} hinting on how easy it is with a single
+button to create multiple VMs across a variety of IaaS. Notably, this
+not only includes resources at IU but also at external
+locations. Pushing this easy management in a more sophisticated
+experience for the user while associating one-click deployments that
+include the ability to deploy virtual clusters, Hadoop environments,
+and other more elaborate setups we provide an early prototype
+screenshot in Figure \ref{F:oneclick}.
 
 
 \begin{figure}[p]
@@ -693,7 +781,7 @@ Despite the fact that Cloudmesh was originally a quite sophisticated command she
   \caption{Monitoring the service distribution in FutureGrid Clusters with Cloudmesh.}
 
     \includegraphics[width=1.0\columnwidth]{images/instances.pdf}
-  \caption{Screenshot demonstrating how easy ot is to manage multible VMs accross various clouds.}\label{F:instances}
+  \caption{Screenshot demonstrating how easy it is to manage multiple VMs across various clouds.}\label{F:instances}
   \centering
     \includegraphics[width=1.0\columnwidth]{images/oneclick.pdf}
   \caption{One click deployment of platforms and sophisticated
@@ -762,8 +850,8 @@ focussed on the development of three of its components. This includes
 virtual machine management in multi-clouds, cloud metrics in
 multi-clouds, and bare metal provisioning. The next steps will include
 the development of other components we discussed in our
-design. Cloudmesh has been sucessfully used in FutureGrid. A GUI and a
-cloudmesh shell is available for easy usage by users. It has been used
+design. Cloudmesh has been successfully used in FutureGrid. A GUI and a
+Cloudmesh shell is available for easy usage by users. It has been used
 by users while deploying it on their local machines, but it also has
 been demonstrated as a hosted service. A REST interface to the
 management functionality is under development. Cloudmesh is an open
@@ -771,27 +859,27 @@ source project. It uses python and Javascript. Although the current
 Web related functionality is developed in flask it is possible to
 transition it easily to other web frameworks such as web2py or
 django. We consider the cloudmesh API a basis for such reuse in other
-frameworks.  Up to date information is avalable at
+frameworks.  Up to date information is available at
 \url{cloudmesh.futuregrid.org}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion \READ}\label{S:conclusion}
+\section{Conclusion}\label{S:conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this paper we presented the design of a toolkit called cloudmesh
-that allows to access multiple clouds through convenient
+In this paper we presented the design of a toolkit called Cloudmesh
+that allows to access to multiple clouds through convenient
 interfaces. This includes command line, a command shell, REST, as well
-as a graphical user interface. Cloudmesh is under active devlopment
-and has shown its viability for accessing not only EC2 based
+as a graphical user interface. Cloudmesh is under active development
+and has shown its viability for accessing more than EC2 based
 clouds. Native interfaces to OpenStack, Azure, as well as any EC2
 compatible cloud have been delivered and virtual machine management
-enabled. An important contribution of cloudmesh is that it provides a
+enabled. An important contribution of Cloudmesh is that it provides a
 sophisticated interface to bare metal provisioning capabilities that
-not anly can be used by administrators, but also by authorized
+not only can be used by administrators, but also by authorized
 users. A role based authorization service makes this possible.
 Furthermore, we have developed a multi-cloud metrics
-framework that allows to leverage information from various IaaS
-frameworks. Future enhancements will include network provisioning,
+framework that leverages information from various IaaS
+frameworks. Future enhancements will include network and
 storage provisioning.
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -803,7 +891,7 @@ storage provisioning.
 
 This material is based upon work supported by the National Science
 Foundation under Grant No. 0910812 and OCI 1025159. Some work of
-cloudmesh is based on earlier work conducted as part of \url{cyberaide.org}.
+Cloudmesh is based on earlier work conducted as part of \url{cyberaide.org}.
 
 \bibliographystyle{abbrvurl}
 
