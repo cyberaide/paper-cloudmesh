@@ -39,3 +39,8 @@ publish:
 	git push
 	cd bigdata
 	git checkout master
+
+
+bib-extract:
+	echo "EXTRACTING ALL USED CITATIONS INTO A BIB FILE"
+	bibtool -x ${FILE}.aux -o ${FILE}.bib
